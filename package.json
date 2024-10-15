@@ -7,7 +7,11 @@
     "build": "bun build src/http/server.ts --target bun --outdir ./dist",
     "start": "NODE_ENV=production bun dist/http/server.ts",
     "test": "bun test",
-    "lint":"eslint --fix src --ext ts"
+    "lint":"eslint --fix src --ext ts",
+    "generate": "drizzle-kit generate",
+    "migrate": "bun src/db/migrate.ts",
+    "seed":"bun src/db/seed.ts",
+    "studio:dev": "bun drizzle-kit studio"
   },
   "devDependencies": {
     "@faker-js/faker":"^9.0.3",
