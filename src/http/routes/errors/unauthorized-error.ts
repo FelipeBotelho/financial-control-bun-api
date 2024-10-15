@@ -1,5 +1,5 @@
-export class UnauthorizedError extends Error {
+export class UnauthorizedError extends Response {
   constructor() {
-    super('Unauthorized.')
+    super('Unauthorized', { status: 401 })
   }
 }

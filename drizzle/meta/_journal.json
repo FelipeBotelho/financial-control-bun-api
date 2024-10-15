@@ -15,6 +15,13 @@
       "when": 1729017019035,
       "tag": "0001_luxuriant_james_howlett",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1729021807511,
+      "tag": "0002_open_network",
+      "breakpoints": true
     }
   ]
 }

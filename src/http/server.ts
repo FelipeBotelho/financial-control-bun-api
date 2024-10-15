@@ -1,5 +1,7 @@
 import cors from '@elysiajs/cors'
 import { Elysia } from 'elysia'
+import { auth } from './auth'
+import { sendAuthenticationLink } from './routes/send-authentication-link'
 
 const app = new Elysia()
   .use(
@@ -16,8 +18,22 @@ const app = new Elysia()
       },
     }),
   )
-  .get('/', () => {
-    return 'Hello World'
+  .use(auth)
+  .use(sendAuthenticationLink)
+  .onError(({ code, error, set }) => {
+    switch (code) {
+      case 'VALIDATION': {
+        set.status = 422
+        return error.message
+      }
+      case 'NOT_FOUND': {
+        return new Response(null, { status: 404 })
+      }
+      default: {
+        console.log(error)
+        return new Response(null, { status: 500 })
+      }
+    }
   })
 
 app.listen(3333, () => {
