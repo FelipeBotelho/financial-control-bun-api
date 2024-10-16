@@ -2,6 +2,9 @@ import cors from '@elysiajs/cors'
 import { Elysia } from 'elysia'
 import { auth } from './auth'
 import { sendAuthenticationLink } from './routes/send-authentication-link'
+import { getProfile } from './routes/get-profile'
+import { authenticateFromLink } from './routes/authenticate-from-link'
+import { signOut } from './routes/sign-out'
 
 const app = new Elysia()
   .use(
@@ -20,6 +23,9 @@ const app = new Elysia()
   )
   .use(auth)
   .use(sendAuthenticationLink)
+  .use(getProfile)
+  .use(authenticateFromLink)
+  .use(signOut)
   .onError(({ code, error, set }) => {
     switch (code) {
       case 'VALIDATION': {
